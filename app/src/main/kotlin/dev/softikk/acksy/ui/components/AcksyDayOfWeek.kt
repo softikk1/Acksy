@@ -20,10 +20,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import dev.softikk.acksy.ui.theme.Dimens
 import dev.softikk.acksy.ui.theme.White
 import kotlinx.datetime.DayOfWeek
 
+private val HeightDayOfWeek = 48.dp
+private val SizeBoxDayOfWeek = 45.dp
 @Composable
 fun AcksyDayOfWeek(
     modifier: Modifier = Modifier, state: SnapshotStateList<DayOfWeek>
@@ -31,7 +34,7 @@ fun AcksyDayOfWeek(
     val weekDays = DayOfWeek.entries.toTypedArray()
     Row(
         modifier = modifier
-            .height(Dimens.heightDayOfWeek)
+            .height(HeightDayOfWeek)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween
@@ -44,11 +47,11 @@ fun AcksyDayOfWeek(
                     MaterialTheme.colorScheme.primary
                 } else {
                     MaterialTheme.colorScheme.surfaceContainer
-                }, tween(Dimens.MEDIUM_ANIM_DURATION_MILLIS)
+                }, tween(Dimens.Anim.MEDIUM_ANIM_DURATION_MILLIS)
             )
             Box(
                 modifier = Modifier
-                    .size(Dimens.sizeDayOfWeek)
+                    .size(SizeBoxDayOfWeek)
                     .clickable(
                         indication = null,
                         interactionSource = remember { MutableInteractionSource() }) {

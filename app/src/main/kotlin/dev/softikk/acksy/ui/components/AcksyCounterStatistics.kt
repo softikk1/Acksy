@@ -27,7 +27,7 @@ fun AcksyCounterStatistics(
 ) {
     var targetCount by remember { mutableIntStateOf(0) }
     val countAnimation by animateIntAsState(
-        targetCount, tween(Dimens.LARGE_DURATION_MILLIS)
+        targetCount, tween(Dimens.Anim.LARGE_DURATION_MILLIS)
     )
 
     LaunchedEffect(Unit) {

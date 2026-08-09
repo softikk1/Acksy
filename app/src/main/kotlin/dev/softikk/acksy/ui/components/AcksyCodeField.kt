@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.input.InputTransformation
 import androidx.compose.foundation.text.input.TextFieldState
@@ -24,7 +24,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import dev.softikk.acksy.ui.theme.Dimens
+
+private val BorderWidth = 1.25.dp
 
 @Composable
 fun AcksyCodeField(
@@ -45,7 +48,7 @@ fun AcksyCodeField(
         },
         decorator = {
             Row(
-                horizontalArrangement = Arrangement.spacedBy(Dimens.mediumPadding)
+                horizontalArrangement = Arrangement.spacedBy(Dimens.Paddings.mediumPadding)
             ) {
                 repeat(6) { index ->
                     val visibleState = remember { MutableTransitionState(false) }
@@ -57,23 +60,17 @@ fun AcksyCodeField(
                     }
 
                     val shape = when (index) {
-                        0 -> RoundedCornerShape(
-                            topEnd = Dimens.xsShape,
-                            bottomEnd = Dimens.xsShape,
-                            topStart = Dimens.mediumShape,
-                            bottomStart = Dimens.mediumShape
+                        0 -> MaterialTheme.shapes.extraSmall.copy(
+                            topStart = CornerSize(Dimens.Shapes.mediumShape),
+                            bottomStart = CornerSize(Dimens.Shapes.mediumShape)
                         )
 
-                        5 -> RoundedCornerShape(
-                            topEnd = Dimens.mediumShape,
-                            bottomEnd = Dimens.mediumShape,
-                            topStart = Dimens.xsShape,
-                            bottomStart = Dimens.xsShape
+                        5 -> MaterialTheme.shapes.extraSmall.copy(
+                            topEnd = CornerSize(Dimens.Shapes.mediumShape),
+                            bottomEnd = CornerSize(Dimens.Shapes.mediumShape)
                         )
 
-                        else -> RoundedCornerShape(
-                            Dimens.xsShape
-                        )
+                        else -> MaterialTheme.shapes.extraSmall
                     }
                     Box(
                         modifier = Modifier
@@ -83,7 +80,7 @@ fun AcksyCodeField(
                                 color = MaterialTheme.colorScheme.secondary, shape = shape
                             )
                             .border(
-                                width = Dimens.widthBorder, color = if (text.isEmpty()) {
+                                width = BorderWidth, color = if (text.isEmpty()) {
                                     if (index == 0) MaterialTheme.colorScheme.primary else Color.Transparent
                                 } else {
                                     if (index == text.length) MaterialTheme.colorScheme.primary else Color.Transparent

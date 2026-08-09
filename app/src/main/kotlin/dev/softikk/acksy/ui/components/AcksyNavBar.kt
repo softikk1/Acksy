@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
@@ -28,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.dp
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import dev.softikk.acksy.R
@@ -35,20 +35,22 @@ import dev.softikk.acksy.ui.navigation.Routes
 import dev.softikk.acksy.ui.theme.Dimens
 import dev.softikk.acksy.ui.theme.White
 
+private val ElevationShadow = 1.5.dp
+private val WidthNavBar = 220.dp
+
 @Composable
 fun AcksyNavBar(
     modifier: Modifier = Modifier, backStack: NavBackStack<NavKey>
 ) {
     val actionButtonColor =
         if (isSystemInDarkTheme()) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurface
-    val shape = RoundedCornerShape(Dimens.largeShape)
+    val shape = MaterialTheme.shapes.large
     var visible by remember { mutableStateOf(false) }
     LaunchedEffect(Unit) {
         visible = true
     }
     Box(
-        modifier = modifier,
-        contentAlignment = Alignment.CenterStart
+        modifier = modifier, contentAlignment = Alignment.CenterStart
     ) {
         AnimatedVisibility(
             visible = visible,
@@ -56,10 +58,10 @@ fun AcksyNavBar(
             exit = slideOutHorizontally { -it / 2 }) {
             Box(
                 modifier = Modifier
-                    .padding(start = Dimens.widthNavBar + Dimens.mediumPadding)
+                    .padding(start = WidthNavBar + Dimens.Paddings.mediumPadding)
                     .size(Dimens.heightComponent)
                     .shadow(
-                        elevation = Dimens.elevationShadow, shape = shape
+                        elevation = ElevationShadow, shape = shape
                     )
                     .clickable(
                         indication = null,
@@ -77,9 +79,9 @@ fun AcksyNavBar(
         }
         Row(
             modifier = Modifier
-                .width(Dimens.widthNavBar)
+                .width(WidthNavBar)
                 .shadow(
-                    elevation = Dimens.elevationShadow, shape = shape
+                    elevation = ElevationShadow, shape = shape
                 )
                 .background(
                     color = MaterialTheme.colorScheme.surface, shape = shape

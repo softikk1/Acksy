@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import dev.softikk.acksy.ui.theme.Blue
 import dev.softikk.acksy.ui.theme.Dimens
 import dev.softikk.acksy.ui.theme.Green
@@ -24,6 +25,10 @@ import dev.softikk.acksy.ui.theme.PastelBlue
 import dev.softikk.acksy.ui.theme.Purple
 import dev.softikk.acksy.ui.theme.Red
 import dev.softikk.acksy.ui.theme.SmartDay
+
+private val ColorItemSize = 34.dp
+private val ActiveColorItemSize = 42.dp
+private val BorderWidth = 2.dp
 
 @Composable
 fun AcksyListColors(
@@ -51,11 +56,11 @@ fun ColorItem(
     val colorAnim by animateColorAsState(if (isActive) color else Color.Transparent, tween(400))
     Box(
         modifier = Modifier
-            .size(Dimens.activeColorItemSize)
+            .size(ActiveColorItemSize)
             .background(
                 color = Color.Transparent, shape = CircleShape
             )
-            .border(Dimens.borderWidth, colorAnim, CircleShape)
+            .border(BorderWidth, colorAnim, CircleShape)
             .clickable(
                 indication = null, interactionSource = remember { MutableInteractionSource() }) {
                 onClick()
@@ -63,7 +68,7 @@ fun ColorItem(
     ) {
         Box(
             modifier = Modifier
-                .size(Dimens.colorItemSize)
+                .size(ColorItemSize)
                 .background(
                     color = color, shape = CircleShape
                 )
