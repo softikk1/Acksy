@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.text.input.TextFieldLineLimits
@@ -24,8 +23,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.unit.dp
 import dev.softikk.acksy.R
 import dev.softikk.acksy.ui.theme.Dimens
+
+private val BackspaceButtonTextFieldSize = 48.dp
 
 @Composable
 fun AcksyTextField(
@@ -79,7 +81,7 @@ fun AcksyTextField(
                         state.edit { replace(0, state.text.length, "") }
                     }) {
                     Icon(
-                        modifier = Modifier.size(Dimens.xButtonSize),
+                        modifier = Modifier.size(BackspaceButtonTextFieldSize),
                         imageVector = ImageVector.vectorResource(R.drawable.x),
                         contentDescription = null
                     )
@@ -91,7 +93,7 @@ fun AcksyTextField(
                     isError = isError,
                     interactionSource = interactionSource,
                     colors = colors,
-                    shape = RoundedCornerShape(Dimens.shapeButtonAndTextField),
+                    shape = MaterialTheme.shapes.small
                 )
             })
     )

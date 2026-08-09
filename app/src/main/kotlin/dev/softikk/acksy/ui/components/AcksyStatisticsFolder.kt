@@ -32,11 +32,11 @@ fun AcksyStatisticsFolder(
             .widthIn(max = Dimens.maxWidthElement)
             .background(
                 color = MaterialTheme.colorScheme.secondary,
-                shape = RoundedCornerShape(Dimens.mediumShape)
+                shape = MaterialTheme.shapes.medium
             )
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = Dimens.mediumPadding),
+            modifier = Modifier.padding(horizontal = Dimens.Paddings.mediumPadding),
             verticalAlignment = Alignment.CenterVertically
         ) {
             repeat(itemsSize) { index ->
@@ -47,7 +47,7 @@ fun AcksyStatisticsFolder(
                     contentAlignment = Alignment.Center
                 ) {
                     Column(
-                        verticalArrangement = Arrangement.spacedBy(Dimens.xsPadding),
+                        verticalArrangement = Arrangement.spacedBy(Dimens.Paddings.xsPadding),
                         horizontalAlignment = Alignment.CenterHorizontally
                     ) {
                         val element = items[index]

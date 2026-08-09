@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.ExperimentalWearMaterialApi
 import androidx.wear.compose.material.FractionalThreshold
 import androidx.wear.compose.material.Text
@@ -34,6 +35,9 @@ import kotlin.math.roundToInt
 enum class Swipeable {
     Center, Left, Right
 }
+
+private val IconTaskPadding = 13.dp
+private val HeightTask = 50.dp
 
 @OptIn(ExperimentalWearMaterialApi::class)
 @Composable
@@ -56,7 +60,7 @@ fun AcksyTask(taskName: String, left: () -> Unit, right: () -> Unit) {
     val anchors = mapOf(0f to 0, 150f to 1, -150f to 2)
     Box(
         modifier = Modifier
-            .height(Dimens.heightTask)
+            .height(HeightTask)
             .fillMaxWidth()
             .swipeable(
                 state = swipeableState,
@@ -72,12 +76,12 @@ fun AcksyTask(taskName: String, left: () -> Unit, right: () -> Unit) {
                     .weight(1f)
                     .background(
                         color = PastelGreen, shape = RoundedCornerShape(
-                            topStart = Dimens.mediumShape, bottomStart = Dimens.mediumShape
+                            topStart = Dimens.Shapes.mediumShape, bottomStart = Dimens.Shapes.mediumShape
                         )
                     ), contentAlignment = Alignment.CenterStart
             ) {
                 Icon(
-                    modifier = Modifier.padding(start = Dimens.iconTaskPadding),
+                    modifier = Modifier.padding(start = IconTaskPadding),
                     imageVector = ImageVector.vectorResource(R.drawable.check),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.surface
@@ -89,12 +93,12 @@ fun AcksyTask(taskName: String, left: () -> Unit, right: () -> Unit) {
                     .weight(1f)
                     .background(
                         color = OrangeJuice, shape = RoundedCornerShape(
-                            topEnd = Dimens.mediumShape, bottomEnd = Dimens.mediumShape
+                            topEnd = Dimens.Shapes.mediumShape, bottomEnd = Dimens.Shapes.mediumShape
                         )
                     ), contentAlignment = Alignment.CenterEnd
             ) {
                 Icon(
-                    modifier = Modifier.padding(end = Dimens.iconTaskPadding),
+                    modifier = Modifier.padding(end = IconTaskPadding),
                     imageVector = ImageVector.vectorResource(R.drawable.skip),
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.surface
@@ -105,10 +109,10 @@ fun AcksyTask(taskName: String, left: () -> Unit, right: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .offset { IntOffset(swipeableState.offset.value.roundToInt(), 0) }
-                .background(color = colorTask, shape = RoundedCornerShape(Dimens.mediumShape)),
+                .background(color = colorTask, shape = MaterialTheme.shapes.medium),
             contentAlignment = Alignment.CenterStart) {
             Text(
-                modifier = Modifier.padding(start = Dimens.mediumPadding),
+                modifier = Modifier.padding(start = Dimens.Paddings.mediumPadding),
                 text = taskName,
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurface

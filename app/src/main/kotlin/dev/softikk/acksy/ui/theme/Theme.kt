@@ -51,6 +51,6 @@ fun AcksyTheme(
     }
 
     MaterialTheme(
-        colorScheme = colorScheme, typography = Typography, content = content
+        colorScheme = colorScheme, shapes = Shapes, typography = Typography, content = content
     )
 }

@@ -21,8 +21,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import dev.softikk.acksy.ui.theme.Dimens
 import dev.softikk.acksy.ui.theme.White
+
+private val HeightAnimButtonsGroup = 40.dp
+private val HeightButtonsGroup = 46.dp
+
 
 @Composable
 fun AcksyAnimButtonsGroup(
@@ -31,17 +36,17 @@ fun AcksyAnimButtonsGroup(
     val buttonsCount = buttons.size
     Row(
         modifier = Modifier
-            .height(Dimens.heightAnimButtonsGroup)
+            .height(HeightAnimButtonsGroup)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(Dimens.xsPadding)
+        horizontalArrangement = Arrangement.spacedBy(Dimens.Paddings.xsPadding)
     ) {
         repeat(buttonsCount) { index ->
             val startAnim =
-                if (index == state) Dimens.largeShape else if (index == 0) Dimens.largeShape else Dimens.smallShape
+                if (index == state) Dimens.Shapes.largeShape else if (index == 0) Dimens.Shapes.largeShape else Dimens.Shapes.smallShape
             val endAnim =
-                if (index == state) Dimens.largeShape else if (index == (buttonsCount - 1)) Dimens.largeShape else Dimens.smallShape
-            val animationSpec: AnimationSpec<Dp> = tween(Dimens.BUTTONS_GROUP_ANIM_DURATION_MILLIS)
+                if (index == state) Dimens.Shapes.largeShape else if (index == (buttonsCount - 1)) Dimens.Shapes.largeShape else Dimens.Shapes.smallShape
+            val animationSpec: AnimationSpec<Dp> = tween(Dimens.Anim.MEDIUM_ANIM_DURATION_MILLIS)
             val topStart by animateDpAsState(
                 startAnim, animationSpec = animationSpec
             )
@@ -90,10 +95,10 @@ fun AcksyButtonsGroup(
     val buttonsCount = buttons.size
     Row(
         modifier = Modifier
-            .height(Dimens.heightButtonsGroup)
+            .height(HeightButtonsGroup)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(Dimens.smallPadding)
+        horizontalArrangement = Arrangement.spacedBy(Dimens.Paddings.smallPadding)
     ) {
         repeat(buttonsCount) { index ->
             Box(

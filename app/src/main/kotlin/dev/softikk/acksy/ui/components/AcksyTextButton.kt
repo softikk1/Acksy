@@ -31,7 +31,7 @@ fun AcksyTextButton(
             contentColor = contentColor,
             disabledContainerColor = containerColor,
             disabledContentColor = contentColor
-        ), shape = RoundedCornerShape(Dimens.shapeButtonAndTextField), onClick = {
+        ), shape = MaterialTheme.shapes.small, onClick = {
             onClick()
         }) {
         Text(
