@@ -27,6 +27,7 @@ import kotlinx.datetime.DayOfWeek
 
 private val HeightDayOfWeek = 48.dp
 private val SizeBoxDayOfWeek = 45.dp
+
 @Composable
 fun AcksyDayOfWeek(
     modifier: Modifier = Modifier, state: SnapshotStateList<DayOfWeek>

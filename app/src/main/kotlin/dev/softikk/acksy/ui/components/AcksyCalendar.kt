@@ -68,7 +68,7 @@ fun AcksyCalendar(
 }
 
 @Composable
-fun MonthHeader(daysOfWeek: List<DayOfWeek>) {
+private fun MonthHeader(daysOfWeek: List<DayOfWeek>) {
     val locale = LocalLocale.current.platformLocale
 
     Row(modifier = Modifier.fillMaxWidth()) {
@@ -85,7 +85,7 @@ fun MonthHeader(daysOfWeek: List<DayOfWeek>) {
 }
 
 @Composable
-fun Day(day: CalendarDay, isSelected: Boolean, onClick: (CalendarDay) -> Unit) {
+private fun Day(day: CalendarDay, isSelected: Boolean, onClick: (CalendarDay) -> Unit) {
     Box(
         modifier = Modifier
             .padding(Dimens.Paddings.xsPadding)
