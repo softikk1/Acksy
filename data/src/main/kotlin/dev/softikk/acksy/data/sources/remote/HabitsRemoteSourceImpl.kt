@@ -1,7 +1,7 @@
 package dev.softikk.acksy.data.sources.remote
 
-import dev.softikk.acksy.data.models.ErrorModel
-import dev.softikk.acksy.data.models.Response
+import dev.softikk.acksy.domain.models.ErrorModel
+import dev.softikk.acksy.domain.models.Response
 import dev.softikk.acksy.data.sources.HabitsRemoteSource
 import dev.softikk.acksy.data.sources.remote.resources.HabitsRes
 import dev.softikk.acksy.data.sources.remote.utils.getFailedResponse

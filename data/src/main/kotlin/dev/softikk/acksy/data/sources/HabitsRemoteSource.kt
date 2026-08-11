@@ -1,7 +1,7 @@
 package dev.softikk.acksy.data.sources
 
-import dev.softikk.acksy.data.models.ErrorModel
-import dev.softikk.acksy.data.models.Response
+import dev.softikk.acksy.domain.models.ErrorModel
+import dev.softikk.acksy.domain.models.Response
 import dev.softikk.acksy.dev.softikk.acksy.entities.habits.GetHabitsRespondDto
 import dev.softikk.acksy.dev.softikk.acksy.entities.habits.HabitDetailsRespondDto
 import dev.softikk.acksy.dev.softikk.acksy.models.HabitScheduleApp

@@ -48,10 +48,11 @@ dependencies {
     implementation(libs.koin.compose)
     implementation(libs.koin.compose.viewmodel)
 
-    implementation(libs.androidx.compose.material)
-    implementation(libs.androidx.navigation3.ui)
     implementation(libs.kotlinx.serialization.core)
     implementation(libs.kotlinx.datetime)
+
+    implementation(libs.androidx.compose.material)
+    implementation(libs.androidx.navigation3.ui)
     implementation(libs.compose.calendar)
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.androidx.activity.compose)

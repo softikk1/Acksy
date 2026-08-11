@@ -1,4 +1,4 @@
-package dev.softikk.acksy.data.models
+package dev.softikk.acksy.domain.models
 
 sealed interface Response<out S, out F> {
     data class Success<T>(val value: T) : Response<T, Nothing>

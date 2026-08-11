@@ -1,7 +1,7 @@
 package dev.softikk.acksy.data.sources.remote
 
-import dev.softikk.acksy.data.models.ErrorModel
-import dev.softikk.acksy.data.models.Response
+import dev.softikk.acksy.domain.models.ErrorModel
+import dev.softikk.acksy.domain.models.Response
 import dev.softikk.acksy.data.sources.AuthRemoteSource
 import dev.softikk.acksy.data.sources.remote.resources.AuthRes
 import dev.softikk.acksy.data.sources.remote.utils.getFailedResponse
@@ -86,7 +86,7 @@ class AuthRemoteSourceImpl(private val client: HttpClient) : AuthRemoteSource {
         val result = client.post(AuthRes.RegisterRes()) {
             setBody(
                 RegisterReceiveDto(
-                    email = email, tempToken = tempToken, username = ""
+                    email = email, tempToken = tempToken, username = username
                 )
             )
         }
