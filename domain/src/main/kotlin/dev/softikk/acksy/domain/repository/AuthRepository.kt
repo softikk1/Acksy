@@ -14,11 +14,9 @@ interface AuthRepository {
 
     suspend fun login(
         email: String, tempToken: Uuid
-    ): Response<TokensModel, ErrorModel>
+    ): Response<Unit, ErrorModel>
 
     suspend fun register(
         email: String, tempToken: Uuid, username: String
-    ): Response<TokensModel, ErrorModel>
-
-    suspend fun refresh(refresh: Uuid): Response<TokensModel, ErrorModel>
+    ): Response<Unit, ErrorModel>
 }
