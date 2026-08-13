@@ -1,17 +1,16 @@
 package dev.softikk.acksy.data.repository
 
 import dev.softikk.acksy.data.sources.AuthRemoteSource
-import dev.softikk.acksy.data.sources.RefreshTokenLocalSource
+import dev.softikk.acksy.data.sources.TokensLocalSource
 import dev.softikk.acksy.domain.models.ErrorModel
 import dev.softikk.acksy.domain.models.Response
 import dev.softikk.acksy.domain.models.auth.ConfirmCodeEmailModel
-import dev.softikk.acksy.domain.models.auth.TokensModel
 import dev.softikk.acksy.domain.repository.AuthRepository
 import kotlin.uuid.Uuid
 
 class AuthRepositoryImpl(
     private val authSource: AuthRemoteSource,
-    private val refreshTokenSource: RefreshTokenLocalSource
+    private val refreshTokenSource: TokensLocalSource
 ) : AuthRepository {
     override suspend fun sendCodeEmail(email: String): Response<Unit, ErrorModel> {
         return authSource.sendCodeEmail(email)
@@ -41,7 +40,10 @@ class AuthRepositoryImpl(
         )) {
             is Response.Success -> {
                 val tokens = result.value
-                refreshTokenSource.setRefreshToken(tokens.refresh)
+                refreshTokenSource.setRefreshToken(
+                    refreshToken = tokens.refresh,
+                    accessToken = tokens.access
+                )
                 Response.Success(Unit)
             }
 
@@ -59,7 +61,10 @@ class AuthRepositoryImpl(
         )) {
             is Response.Success -> {
                 val tokens = result.value
-                refreshTokenSource.setRefreshToken(tokens.refresh)
+                refreshTokenSource.setRefreshToken(
+                    refreshToken = tokens.refresh,
+                    accessToken = tokens.access
+                )
                 Response.Success(Unit)
             }
 
@@ -69,13 +74,16 @@ class AuthRepositoryImpl(
         }
     }
 
-    suspend fun refresh(refresh: Uuid): Response<Unit, ErrorModel> {
+    override suspend fun refresh(refresh: Uuid): Response<Unit, ErrorModel> {
         return when (val result = authSource.refresh(
             refresh = refresh
         )) {
             is Response.Success -> {
                 val tokens = result.value
-                refreshTokenSource.setRefreshToken(tokens.refresh)
+                refreshTokenSource.setRefreshToken(
+                    refreshToken = tokens.refresh,
+                    accessToken = tokens.access
+                )
                 Response.Success(Unit)
             }
 

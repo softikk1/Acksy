@@ -10,6 +10,8 @@ dependencies {
     implementation(platform(libs.koin.bom))
     implementation(libs.koin.core)
 
+    implementation(libs.androidx.datastore.preferences)
+
     implementation(libs.ktor.client.auth)
     implementation(libs.ktor.client.core)
     implementation(libs.ktor.client.cio)
