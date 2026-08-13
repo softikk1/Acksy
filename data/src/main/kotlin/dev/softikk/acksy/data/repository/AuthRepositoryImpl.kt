@@ -1,7 +1,7 @@
 package dev.softikk.acksy.data.repository
 
+import dev.softikk.acksy.data.sources.AuthRemoteSource
 import dev.softikk.acksy.data.sources.RefreshTokenLocalSource
-import dev.softikk.acksy.data.sources.remote.AuthRemoteSourceImpl
 import dev.softikk.acksy.domain.models.ErrorModel
 import dev.softikk.acksy.domain.models.Response
 import dev.softikk.acksy.domain.models.auth.ConfirmCodeEmailModel
@@ -10,7 +10,7 @@ import dev.softikk.acksy.domain.repository.AuthRepository
 import kotlin.uuid.Uuid
 
 class AuthRepositoryImpl(
-    private val authSource: AuthRemoteSourceImpl,
+    private val authSource: AuthRemoteSource,
     private val refreshTokenSource: RefreshTokenLocalSource
 ) : AuthRepository {
     override suspend fun sendCodeEmail(email: String): Response<Unit, ErrorModel> {
