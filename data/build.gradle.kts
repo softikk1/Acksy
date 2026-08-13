@@ -8,7 +8,7 @@ dependencies {
 
     implementation(libs.acksy.entities.jvm)
 
-    implementation("androidx.datastore:datastore-preferences:1.2.1")
+    implementation(libs.androidx.datastore.preferences)
 
     implementation(libs.kotlinx.datetime)
 

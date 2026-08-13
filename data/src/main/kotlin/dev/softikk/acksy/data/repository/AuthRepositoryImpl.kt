@@ -35,18 +35,14 @@ class AuthRepositoryImpl(
 
     override suspend fun login(
         email: String, tempToken: Uuid
-    ): Response<TokensModel, ErrorModel> {
+    ): Response<Unit, ErrorModel> {
         return when (val result = authSource.login(
             email = email, tempToken = tempToken
         )) {
             is Response.Success -> {
                 val tokens = result.value
                 refreshTokenSource.setRefreshToken(tokens.refresh)
-                Response.Success(
-                    TokensModel(
-                        access = tokens.access, refresh = tokens.refresh
-                    )
-                )
+                Response.Success(Unit)
             }
 
             is Response.Failed -> {
@@ -57,18 +53,14 @@ class AuthRepositoryImpl(
 
     override suspend fun register(
         email: String, tempToken: Uuid, username: String
-    ): Response<TokensModel, ErrorModel> {
+    ): Response<Unit, ErrorModel> {
         return when (val result = authSource.register(
             email = email, tempToken = tempToken, username = username
         )) {
             is Response.Success -> {
                 val tokens = result.value
                 refreshTokenSource.setRefreshToken(tokens.refresh)
-                Response.Success(
-                    TokensModel(
-                        access = tokens.access, refresh = tokens.refresh
-                    )
-                )
+                Response.Success(Unit)
             }
 
             is Response.Failed -> {
@@ -77,18 +69,14 @@ class AuthRepositoryImpl(
         }
     }
 
-    override suspend fun refresh(refresh: Uuid): Response<TokensModel, ErrorModel> {
+    suspend fun refresh(refresh: Uuid): Response<Unit, ErrorModel> {
         return when (val result = authSource.refresh(
             refresh = refresh
         )) {
             is Response.Success -> {
                 val tokens = result.value
                 refreshTokenSource.setRefreshToken(tokens.refresh)
-                Response.Success(
-                    TokensModel(
-                        access = tokens.access, refresh = tokens.refresh
-                    )
-                )
+                Response.Success(Unit)
             }
 
             is Response.Failed -> {
