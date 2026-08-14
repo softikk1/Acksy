@@ -3,7 +3,6 @@ package dev.softikk.acksy.domain.repository
 import dev.softikk.acksy.domain.models.ErrorModel
 import dev.softikk.acksy.domain.models.Response
 import dev.softikk.acksy.domain.models.auth.ConfirmCodeEmailModel
-import dev.softikk.acksy.domain.models.auth.TokensModel
 import kotlin.uuid.Uuid
 
 interface AuthRepository {
@@ -19,4 +18,6 @@ interface AuthRepository {
     suspend fun register(
         email: String, tempToken: Uuid, username: String
     ): Response<Unit, ErrorModel>
+
+    suspend fun refresh(refresh: Uuid): Response<Unit, ErrorModel>
 }
