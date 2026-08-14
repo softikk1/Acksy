@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string name="language">Русский</string>
+    <string name="text_button_welcome_screen">Старт</string>
+    <string name="legal_text_welcome_screen_1">Регистрируясь, вы соглашаетесь с нашими </string>
+    <string name="legal_text_welcome_screen_2">Условиями использования</string>
+    <string name="legal_text_welcome_screen_3"> и </string>
+    <string name="legal_text_welcome_screen_4">Политикой конфиденциальности</string>
 </resources>

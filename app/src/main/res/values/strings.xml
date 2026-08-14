@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name" translatable="false">Acksy</string>
+    <string name="language">English</string>
+    <string name="text_button_welcome_screen">Start</string>
+    <string name="legal_text_welcome_screen_1">By signing up, you agree to our</string>
+    <string name="legal_text_welcome_screen_2">Terms of Use</string>
+    <string name="legal_text_welcome_screen_3">and</string>
+    <string name="legal_text_welcome_screen_4">Privacy Policy</string>
 </resources>
