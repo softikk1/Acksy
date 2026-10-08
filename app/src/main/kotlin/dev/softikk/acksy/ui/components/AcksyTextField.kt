@@ -32,7 +32,7 @@ private val BackspaceButtonTextFieldSize = 48.dp
 @Composable
 fun AcksyTextField(
     modifier: Modifier,
-    label: String,
+    placeholder: String,
     isError: Boolean = false,
     state: TextFieldState = rememberTextFieldState(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
@@ -70,9 +70,9 @@ fun AcksyTextField(
             outputTransformation = null,
             interactionSource = interactionSource,
             colors = colors,
-            label = {
+            placeholder = {
                 Text(
-                    text = label, style = MaterialTheme.typography.bodyMedium
+                    text = placeholder, style = MaterialTheme.typography.bodyMedium
                 )
             },
             trailingIcon = {
@@ -93,7 +93,9 @@ fun AcksyTextField(
                     isError = isError,
                     interactionSource = interactionSource,
                     colors = colors,
-                    shape = MaterialTheme.shapes.small
+                    shape = MaterialTheme.shapes.small,
+                    focusedIndicatorLineThickness = 0.dp,
+                    unfocusedIndicatorLineThickness = 0.dp
                 )
             })
     )

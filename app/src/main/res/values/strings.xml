@@ -6,4 +6,10 @@
     <string name="legal_text_welcome_screen_2">Terms of Use</string>
     <string name="legal_text_welcome_screen_3">and</string>
     <string name="legal_text_welcome_screen_4">Privacy Policy</string>
+
+    <!--  Enter email screen -->
+    <string name="enter_email_screen_title">Choose a login email</string>
+    <string name="enter_email_screen_description">Please enter an email address to which you have access.</string>
+    <string name="enter_email_screen_text_field_placeholder">Email</string>
+    <string name="enter_email_screen_button_text">Continue</string>
 </resources>
