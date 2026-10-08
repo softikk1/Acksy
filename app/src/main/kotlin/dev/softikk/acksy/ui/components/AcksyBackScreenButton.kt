@@ -23,7 +23,7 @@ fun AcksyBackScreenButton(modifier: Modifier = Modifier, backStack: NavBackStack
                 backStack.removeLastOrNull()
             }) {
         Icon(
-            imageVector = ImageVector.vectorResource(R.drawable.arrow_back),
+            imageVector = ImageVector.vectorResource(R.drawable.back),
             contentDescription = null,
             tint = MaterialTheme.colorScheme.onSurface
         )
