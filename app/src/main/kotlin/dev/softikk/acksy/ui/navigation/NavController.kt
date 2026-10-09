@@ -8,11 +8,12 @@ import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation3.runtime.NavEntry
+import androidx.navigation3.runtime.rememberNavBackStack
 import androidx.navigation3.ui.NavDisplay
 
 @Composable
 fun NavController() {
-    val backStack = remember { mutableStateListOf<Routes>() }
+    val backStack = rememberNavBackStack(Routes.Welcome)
     Scaffold(
         containerColor = MaterialTheme.colorScheme.surface
     ) { innerPadding ->
@@ -71,6 +72,12 @@ fun NavController() {
                     }
 
                     Routes.Settings -> NavEntry(
+                        key = key
+                    ) {
+
+                    }
+
+                    else -> NavEntry(
                         key = key
                     ) {
 

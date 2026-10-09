@@ -8,9 +8,14 @@
     <string name="legal_text_welcome_screen_3"> и </string>
     <string name="legal_text_welcome_screen_4">Политикой конфиденциальности</string>
 
+    <string name="auth_button_text">Далее</string>
+
     <!--  Enter email screen -->
     <string name="enter_email_screen_title">Выберите email для входа</string>
     <string name="enter_email_screen_description">Пожалуйста, введите адрес электронной почты, к которому у вас есть доступ.</string>
     <string name="enter_email_screen_text_field_placeholder">Email</string>
-    <string name="enter_email_screen_button_text">Продолжить</string>
+
+     <!-- Enter verification code screen -->
+    <string name="enter_verif_code_screen_title">Верификационный код</string>
+    <string name="enter_verif_code_screen_description">Пожалуйста, проверьте электронную почту %s (не забудьте заглянуть в папку «Спам») и введите код, который мы только что вам отправили.</string>
 </resources>
