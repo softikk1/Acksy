@@ -18,4 +18,10 @@
      <!-- Enter verification code screen -->
     <string name="enter_verif_code_screen_title">Верификационный код</string>
     <string name="enter_verif_code_screen_description">Пожалуйста, проверьте электронную почту %s (не забудьте заглянуть в папку «Спам») и введите код, который мы только что вам отправили.</string>
+
+    <!-- Home screen -->
+    <string name="home_screen_title">Главное</string>
+
+    <string name="home_screen_tasks_widget_today">сегодня</string>
+    <string name="home_screen_tasks_widget_all">все</string>
 </resources>

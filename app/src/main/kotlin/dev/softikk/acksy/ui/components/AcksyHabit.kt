@@ -16,8 +16,11 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.dropShadow
+import androidx.compose.ui.graphics.shadow.Shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import androidx.wear.compose.material.ExperimentalWearMaterialApi
@@ -41,7 +44,7 @@ private val HeightTask = 50.dp
 
 @OptIn(ExperimentalWearMaterialApi::class)
 @Composable
-fun AcksyTask(taskName: String, left: () -> Unit, right: () -> Unit) {
+fun AcksyHabit(taskName: String, left: () -> Unit, right: () -> Unit) {
     val colorTask =
         if (isSystemInDarkTheme()) MaterialTheme.colorScheme.surfaceContainer else DarkWhite
     val swipeableState = rememberSwipeableState(0, confirmStateChange = { value ->
@@ -69,14 +72,22 @@ fun AcksyTask(taskName: String, left: () -> Unit, right: () -> Unit) {
                 orientation = Orientation.Horizontal
             )
     ) {
-        Row(modifier = Modifier.fillMaxSize()) {
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .dropShadow(
+                    shape = RoundedCornerShape(Dimens.Shapes.mediumShape),
+                    shadow = Shadow(radius = 4.dp, offset = DpOffset(x = 0.dp, y = 1.dp), alpha = 0.1f)
+                )
+        ) {
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .weight(1f)
                     .background(
                         color = PastelGreen, shape = RoundedCornerShape(
-                            topStart = Dimens.Shapes.mediumShape, bottomStart = Dimens.Shapes.mediumShape
+                            topStart = Dimens.Shapes.mediumShape,
+                            bottomStart = Dimens.Shapes.mediumShape
                         )
                     ), contentAlignment = Alignment.CenterStart
             ) {
@@ -93,7 +104,8 @@ fun AcksyTask(taskName: String, left: () -> Unit, right: () -> Unit) {
                     .weight(1f)
                     .background(
                         color = OrangeJuice, shape = RoundedCornerShape(
-                            topEnd = Dimens.Shapes.mediumShape, bottomEnd = Dimens.Shapes.mediumShape
+                            topEnd = Dimens.Shapes.mediumShape,
+                            bottomEnd = Dimens.Shapes.mediumShape
                         )
                     ), contentAlignment = Alignment.CenterEnd
             ) {
@@ -109,8 +121,9 @@ fun AcksyTask(taskName: String, left: () -> Unit, right: () -> Unit) {
             modifier = Modifier
                 .fillMaxSize()
                 .offset { IntOffset(swipeableState.offset.value.roundToInt(), 0) }
-                .background(color = colorTask, shape = MaterialTheme.shapes.medium),
-            contentAlignment = Alignment.CenterStart) {
+                .background(
+                    color = colorTask, shape = RoundedCornerShape(Dimens.Shapes.mediumShape)
+                ), contentAlignment = Alignment.CenterStart) {
             Text(
                 modifier = Modifier.padding(start = Dimens.Paddings.mediumPadding),
                 text = taskName,

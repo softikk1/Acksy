@@ -1,4 +1,5 @@
 <resources>
+    <!-- Welcome screen -->
     <string name="app_name" translatable="false">Acksy</string>
     <string name="language">English</string>
     <string name="text_button_welcome_screen">Start</string>
@@ -18,4 +19,10 @@
     <!-- Enter verification code screen -->
     <string name="enter_verif_code_screen_title">Verification code</string>
     <string name="enter_verif_code_screen_description">Please check your email %s (don’t forget the spam folder) and enter the code we just sent you.</string>
+
+    <!-- Home screen -->
+    <string name="home_screen_title">Home</string>
+
+    <string name="home_screen_tasks_widget_today">today</string>
+    <string name="home_screen_tasks_widget_all">all</string>
 </resources>
