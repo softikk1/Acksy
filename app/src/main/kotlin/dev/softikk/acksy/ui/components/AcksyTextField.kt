@@ -31,7 +31,7 @@ private val BackspaceButtonTextFieldSize = 48.dp
 
 @Composable
 fun AcksyTextField(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     placeholder: String,
     isError: Boolean = false,
     state: TextFieldState = rememberTextFieldState(),

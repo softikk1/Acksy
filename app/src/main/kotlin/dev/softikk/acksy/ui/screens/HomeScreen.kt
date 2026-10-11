@@ -14,7 +14,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import dev.softikk.acksy.R
 import dev.softikk.acksy.domain.enums.DailyType
@@ -23,7 +22,6 @@ import dev.softikk.acksy.domain.models.habits.HabitScheduleModel
 import dev.softikk.acksy.ui.components.AcksyHabit
 import dev.softikk.acksy.ui.components.AcksyScreenName
 import dev.softikk.acksy.ui.components.AcksyTasksWidgets
-import dev.softikk.acksy.ui.theme.AcksyTheme
 import dev.softikk.acksy.ui.theme.Dimens
 import dev.softikk.acksy.ui.utils.isTodayHabit
 import kotlinx.datetime.DayOfWeek
@@ -87,7 +85,6 @@ val testTaskList = listOf(
     )
 )
 
-@Preview
 @Composable
 fun HomeScreen() {
     val habitsWidgets = listOf(
@@ -96,51 +93,49 @@ fun HomeScreen() {
     )
     var selected by remember { mutableStateOf(habitsWidgets[0]) }
 
-    AcksyTheme {
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(Dimens.Paddings.mediumPadding),
-            verticalArrangement = Arrangement.spacedBy(Dimens.Paddings.smallPadding)
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(Dimens.Paddings.mediumPadding),
+        verticalArrangement = Arrangement.spacedBy(Dimens.Paddings.smallPadding)
+    ) {
+        AcksyScreenName(
+            text = stringResource(R.string.home_screen_name)
+        )
+        AcksyTasksWidgets(
+            selected = selected, habitsWidgets = habitsWidgets
         ) {
-            AcksyScreenName(
-                text = stringResource(R.string.home_screen_title)
-            )
-            AcksyTasksWidgets(
-                selected = selected, habitsWidgets = habitsWidgets
-            ) {
-                selected = it
+            selected = it
+        }
+        LazyColumn(
+            verticalArrangement = Arrangement.spacedBy(Dimens.Paddings.mediumPadding)
+        ) {
+            item {
+                Spacer(modifier = Modifier.padding(vertical = 2.dp))
             }
-            LazyColumn(
-                verticalArrangement = Arrangement.spacedBy(Dimens.Paddings.mediumPadding)
-            ) {
-                item {
-                    Spacer(modifier = Modifier.padding(vertical = 2.dp))
-                }
-                items(testTaskList.filter {
-                    when (selected) {
-                        habitsWidgets[0] -> {
-                            isTodayHabit(it)
-                        }
-
-                        habitsWidgets[1] -> {
-                            true
-                        }
-
-                        else -> {
-                            false
-                        }
+            items(testTaskList.filter {
+                when (selected) {
+                    habitsWidgets[0] -> {
+                        isTodayHabit(it)
                     }
-                }) { habit ->
-                    AcksyHabit(taskName = habit.title, left = {
 
-                    }, right = {
+                    habitsWidgets[1] -> {
+                        true
+                    }
 
-                    })
+                    else -> {
+                        false
+                    }
                 }
-                item {
-                    Spacer(modifier = Modifier.padding(vertical = 2.dp))
-                }
+            }) { habit ->
+                AcksyHabit(taskName = habit.title, left = {
+
+                }, right = {
+
+                })
+            }
+            item {
+                Spacer(modifier = Modifier.padding(vertical = 2.dp))
             }
         }
     }

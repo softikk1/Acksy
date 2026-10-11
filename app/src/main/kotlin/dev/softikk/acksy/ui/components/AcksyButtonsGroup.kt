@@ -111,7 +111,8 @@ fun AcksyButtonsGroup(
                         onState(index)
                     }
                     .background(
-                        color = if (index == state) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+                        color = if (index == state) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
+                        shape = RoundedCornerShape(Dimens.Shapes.mediumShape)
                     ), contentAlignment = Alignment.Center) {
                 Text(
                     text = buttons[index],

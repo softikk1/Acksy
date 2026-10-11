@@ -21,8 +21,26 @@
     <string name="enter_verif_code_screen_description">Please check your email %s (don’t forget the spam folder) and enter the code we just sent you.</string>
 
     <!-- Home screen -->
-    <string name="home_screen_title">Home</string>
+    <string name="home_screen_name">Home</string>
 
     <string name="home_screen_tasks_widget_today">today</string>
     <string name="home_screen_tasks_widget_all">all</string>
+
+    <!-- Create habit screen -->
+    <string name="create_habit_screen_name">Create habit</string>
+    <string name="create_habit_screen_text_field_placeholder_text">Title</string>
+
+    <string name="create_habit_screen_schedule_daily">Daily</string>
+    <string name="create_habit_screen_schedule_weekly">Weekly</string>
+    <string name="create_habit_screen_schedule_monthly">Monthly</string>
+
+    <string name="create_habit_screen_title_daily">Frequency</string>
+    <string name="create_habit_screen_title_weekly">On these days</string>
+    <string name="create_habit_screen_title_monthly">Every month on</string>
+
+    <string name="create_habit_screen_schedule_daily_every_day">Every day</string>
+    <string name="create_habit_screen_schedule_daily_every_weekdays">Weekdays</string>
+    <string name="create_habit_screen_schedule_daily_every_weekends">Weekends</string>
+
+    <string name="create_habit_screen_text_button_save">Save</string>
 </resources>

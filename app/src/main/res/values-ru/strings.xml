@@ -15,13 +15,31 @@
     <string name="enter_email_screen_description">Пожалуйста, введите адрес электронной почты, к которому у вас есть доступ.</string>
     <string name="enter_email_screen_text_field_placeholder">Email</string>
 
-     <!-- Enter verification code screen -->
+    <!-- Enter verification code screen -->
     <string name="enter_verif_code_screen_title">Верификационный код</string>
     <string name="enter_verif_code_screen_description">Пожалуйста, проверьте электронную почту %s (не забудьте заглянуть в папку «Спам») и введите код, который мы только что вам отправили.</string>
 
     <!-- Home screen -->
-    <string name="home_screen_title">Главное</string>
+    <string name="home_screen_name">Главное</string>
 
     <string name="home_screen_tasks_widget_today">сегодня</string>
     <string name="home_screen_tasks_widget_all">все</string>
+
+    <!-- Create habit screen -->
+    <string name="create_habit_screen_name">Создание привычки</string>
+    <string name="create_habit_screen_text_field_placeholder_text">Заголовок</string>
+
+    <string name="create_habit_screen_schedule_daily">Ежедневно</string>
+    <string name="create_habit_screen_schedule_weekly">Еженедельно</string>
+    <string name="create_habit_screen_schedule_monthly">Ежемесячно</string>
+
+    <string name="create_habit_screen_title_daily">Частота</string>
+    <string name="create_habit_screen_title_weekly">В эти дни</string>
+    <string name="create_habit_screen_title_monthly">Каждый месяц в</string>
+
+    <string name="create_habit_screen_schedule_daily_every_day">Каждый день</string>
+    <string name="create_habit_screen_schedule_daily_every_weekdays">Будние дни</string>
+    <string name="create_habit_screen_schedule_daily_every_weekends">Выходные</string>
+
+    <string name="create_habit_screen_text_button_save">Сохранить</string>
 </resources>

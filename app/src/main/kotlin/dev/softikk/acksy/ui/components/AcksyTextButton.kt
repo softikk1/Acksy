@@ -26,12 +26,15 @@ fun AcksyTextButton(
     Button(
         modifier = modifier
             .height(Dimens.heightComponent)
-            .widthIn(max = Dimens.maxWidthElement), colors = ButtonColors(
+            .widthIn(max = Dimens.maxWidthElement),
+        colors = ButtonColors(
             containerColor = containerColor,
             contentColor = contentColor,
             disabledContainerColor = containerColor,
             disabledContentColor = contentColor
-        ), shape = MaterialTheme.shapes.small, onClick = {
+        ),
+        shape = RoundedCornerShape(Dimens.Shapes.largeShape),
+        onClick = {
             onClick()
         }) {
         Text(
