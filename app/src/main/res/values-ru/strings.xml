@@ -42,4 +42,20 @@
     <string name="create_habit_screen_schedule_daily_every_weekends">Выходные</string>
 
     <string name="create_habit_screen_text_button_save">Сохранить</string>
+
+    <!-- Habit details screen -->
+    <string name="habit_details_screen_schedule_every_day">Каждый день</string>
+    <string name="habit_details_screen_schedule_weekdays">Будние дни</string>
+    <string name="habit_details_screen_schedule_weekends">Выходные</string>
+    <string name="habit_details_screen_schedule_weekly">Еженедельно в</string>
+    <string name="habit_details_screen_schedule_monthly">Ежемесячно в</string>
+
+    <string name="habit_details_screen_title">История</string>
+
+    <string name="habit_details_screen_statistic_folder_score">Оценка</string>
+    <string name="habit_details_screen_statistic_folder_total">Итог</string>
+    <string name="habit_details_screen_statistic_folder_best_streak">Лучшая серия</string>
+    <string name="habit_details_screen_statistic_folder_streak">Серия</string>
+
+    <string name="habit_details_screen_button_delete_habit">Удалить привычку</string>
 </resources>

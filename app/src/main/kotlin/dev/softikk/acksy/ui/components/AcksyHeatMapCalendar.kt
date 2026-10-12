@@ -27,12 +27,15 @@ import com.kizitonwose.calendar.core.CalendarDay
 import com.kizitonwose.calendar.core.CalendarMonth
 import com.kizitonwose.calendar.core.firstDayOfWeekFromLocale
 import dev.softikk.acksy.ui.navigation.Routes
+import dev.softikk.acksy.ui.theme.Dimens
+import kotlinx.datetime.LocalDate
+import kotlinx.datetime.toKotlinLocalDate
 import java.time.YearMonth
 import java.time.format.TextStyle
 
 @Composable
 fun AcksyHeatMapCalendar(
-    backStack: NavBackStack<NavKey>
+    backStack: NavBackStack<NavKey>, confirmsHabit: List<LocalDate>
 ) {
     val currentMonth = remember { YearMonth.now() }
     val startMonth = remember { currentMonth.minusMonths(100) }
@@ -51,19 +54,25 @@ fun AcksyHeatMapCalendar(
     if (backStack.lastOrNull() != null) {
         HeatMapCalendar(state = state, dayContent = { day, _ ->
             HeatMapDay(
-                day = day, isStatistics = backStack.lastOrNull() == Routes.Statistics
+                day = day,
+                confirmsHabit = confirmsHabit,
+                isStatistics = backStack.lastOrNull() == Routes.Statistics
             )
         }, weekHeader = { day ->
             Box(
                 modifier = Modifier
                     .height(24.dp)
-                    .fillMaxWidth(),
+                    .fillMaxWidth()
+                    .padding(end = Dimens.Paddings.xsPadding),
                 contentAlignment = Alignment.CenterStart
             ) {
                 Text(
-                    textAlign = TextAlign.Center, text = day.getDisplayName(
-                        TextStyle.SHORT_STANDALONE, locale
-                    )
+                    textAlign = TextAlign.Center,
+                    text = day.getDisplayName(
+                        TextStyle.NARROW_STANDALONE, locale
+                    ),
+                    style = MaterialTheme.typography.labelLarge,
+                    color = MaterialTheme.colorScheme.onSurface
                 )
             }
         }, monthHeader = { month ->
@@ -73,18 +82,17 @@ fun AcksyHeatMapCalendar(
 }
 
 @Composable
-private fun HeatMapDay(day: CalendarDay, isStatistics: Boolean) {
+private fun HeatMapDay(day: CalendarDay, confirmsHabit: List<LocalDate>, isStatistics: Boolean) {
     Box(
         modifier = Modifier
             .size(24.dp)
             .padding(1.dp)
             .clip(RoundedCornerShape(3.dp))
             .border(0.5.dp, MaterialTheme.colorScheme.surfaceContainer, RoundedCornerShape(3.dp))
-            .background(
-                if (isStatistics) getContributionColorForDateStatistics((0..10).random())
-                else getContributionColorForDateHabit((0..1).random())
-            )
-    )
+            .background(if (isStatistics) getContributionColorForDateStatistics(if (day.date.toKotlinLocalDate() in confirmsHabit) confirmsHabit.count {
+                it == day.date.toKotlinLocalDate()
+            } else 0)
+            else getContributionColorForDateHabit(if (day.date.toKotlinLocalDate() in confirmsHabit) 1 else 0)))
 }
 
 @Composable
@@ -94,7 +102,7 @@ private fun HeatMapMonthHeader(month: CalendarMonth) {
     Text(
         textAlign = TextAlign.Center, text = month.yearMonth.month.getDisplayName(
             TextStyle.SHORT_STANDALONE, locale
-        )
+        ), style = MaterialTheme.typography.labelLarge, color = MaterialTheme.colorScheme.onSurface
     )
 }
 

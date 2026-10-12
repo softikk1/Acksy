@@ -43,4 +43,20 @@
     <string name="create_habit_screen_schedule_daily_every_weekends">Weekends</string>
 
     <string name="create_habit_screen_text_button_save">Save</string>
+
+    <!-- Habit details screen -->
+    <string name="habit_details_screen_schedule_every_day">Every day</string>
+    <string name="habit_details_screen_schedule_weekdays">Weekdays</string>
+    <string name="habit_details_screen_schedule_weekends">Weekends</string>
+    <string name="habit_details_screen_schedule_weekly">Every week on</string>
+    <string name="habit_details_screen_schedule_monthly">Every month on</string>
+
+    <string name="habit_details_screen_statistic_folder_score">Score</string>
+    <string name="habit_details_screen_statistic_folder_total">Total</string>
+    <string name="habit_details_screen_statistic_folder_best_streak">Best streak</string>
+    <string name="habit_details_screen_statistic_folder_streak">Streak</string>
+
+    <string name="habit_details_screen_title">History</string>
+
+    <string name="habit_details_screen_button_delete_habit">Delete habit</string>
 </resources>
