@@ -58,4 +58,15 @@
     <string name="habit_details_screen_statistic_folder_streak">Серия</string>
 
     <string name="habit_details_screen_button_delete_habit">Удалить привычку</string>
+
+    <!-- Statistics screen -->
+    <string name="statistics_screen_name">Статистика</string>
+    <string name="statistics_screen_description">Общий показатель успешности</string>
+
+    <string name="statistics_screen_statistic_folder_total">Итог</string>
+    <string name="statistics_screen_statistic_folder_best_streak">Лучшая серия</string>
+    <string name="statistics_screen_statistic_folder_streak">Серия</string>
+
+    <string name="statistics_screen_subtitle_chart">Диаграмма</string>
+    <string name="statistics_screen_subtitle_heatmap">Тепловая карта</string>
 </resources>

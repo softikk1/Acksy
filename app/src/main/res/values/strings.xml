@@ -59,4 +59,15 @@
     <string name="habit_details_screen_title">History</string>
 
     <string name="habit_details_screen_button_delete_habit">Delete habit</string>
+
+    <!-- Statistics screen -->
+    <string name="statistics_screen_name">Statistics</string>
+    <string name="statistics_screen_description">All time success rate</string>
+
+    <string name="statistics_screen_statistic_folder_total">Total</string>
+    <string name="statistics_screen_statistic_folder_best_streak">Best streak</string>
+    <string name="statistics_screen_statistic_folder_streak">Streak</string>
+
+    <string name="statistics_screen_subtitle_chart">Chart</string>
+    <string name="statistics_screen_subtitle_heatmap">Heatmap</string>
 </resources>

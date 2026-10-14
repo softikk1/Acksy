@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.koin.compiler)
 }
 
 android {
@@ -43,6 +44,11 @@ android {
 dependencies {
     implementation(project(":di"))
     implementation(project(":domain"))
+    implementation(libs.androidx.datastore.preferences)
+
+    implementation(libs.vico.compose)
+    implementation(libs.vico.compose.m3)
+    implementation(libs.vico.compose.glance)
 
     implementation(libs.koin.android)
     implementation(libs.koin.compose)

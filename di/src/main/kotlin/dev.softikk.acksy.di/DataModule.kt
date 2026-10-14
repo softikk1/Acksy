@@ -1,5 +1,9 @@
 package dev.softikk.acksy.di
 
+import androidx.datastore.core.DataStore
+import androidx.datastore.core.DataStoreFactory
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.PreferencesSerializer
 import dev.softikk.acksy.data.sources.AuthRemoteSource
 import dev.softikk.acksy.data.sources.HabitsRemoteSource
 import dev.softikk.acksy.data.sources.SettingsRemoteSource
@@ -16,6 +20,7 @@ import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.auth.providers.BearerTokens
 import io.ktor.client.plugins.auth.providers.bearer
+import io.ktor.client.plugins.cache.storage.FileStorage
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
 import org.koin.dsl.module
@@ -66,7 +71,6 @@ val dataModule = module {
     single<StatisticsRemoteSource> {
         StatisticsRemoteSourceImpl(get())
     }
-
     single<TokensLocalSource> {
         TokensLocalSourceImpl(get())
     }
