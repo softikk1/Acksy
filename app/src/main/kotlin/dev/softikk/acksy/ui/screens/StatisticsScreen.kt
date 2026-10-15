@@ -6,16 +6,16 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import androidx.navigation3.runtime.rememberNavBackStack
-import androidx.compose.material3.Text
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
 import dev.softikk.acksy.R
@@ -59,9 +59,10 @@ fun StatisticsScreen(backStack: NavBackStack<NavKey>) {
     val modelProducer = remember { CartesianChartModelProducer() }
     LaunchedEffect(Unit) {
         modelProducer.runTransaction {
-            lineModel { series(
-                TestStatisticsModel.confirms.sorted().map { it.day }
-            ) }
+            lineModel {
+                series(
+                    TestStatisticsModel.confirms.sorted().map { it.day })
+            }
         }
     }
     Column(
@@ -102,37 +103,21 @@ fun StatisticsScreen(backStack: NavBackStack<NavKey>) {
                 )
             )
         )
-        Column(
-            verticalArrangement = Arrangement.spacedBy(Dimens.Paddings.xsPadding)
-        ) {
-            Text(
-                text = stringResource(R.string.statistics_screen_subtitle_chart),
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            AcksyChart(
-                modelProducer = modelProducer
-            )
-        }
-        Column(
-            verticalArrangement = Arrangement.spacedBy(Dimens.Paddings.xsPadding)
-        ) {
-            Text(
-                text = stringResource(R.string.statistics_screen_subtitle_heatmap),
-                style = MaterialTheme.typography.headlineMedium,
-                color = MaterialTheme.colorScheme.onSurface
-            )
-            AcksyHeatMapCalendar(
-                backStack = backStack, confirmsHabit = TestStatisticsModel.confirms.map { it.date })
-        }
-    }
-}
-
-@Preview
-@Composable
-fun R() {
-    val backStack = rememberNavBackStack(Routes.Welcome)
-    AcksyTheme {
-        StatisticsScreen(backStack = backStack)
+        Text(
+            text = stringResource(R.string.statistics_screen_subtitle_chart),
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+        AcksyChart(
+            modelProducer = modelProducer
+        )
+        Text(
+            text = stringResource(R.string.statistics_screen_subtitle_heatmap),
+            style = MaterialTheme.typography.headlineMedium,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+        AcksyHeatMapCalendar(
+            isStatistic = backStack.lastOrNull() == Routes.Statistics,
+            confirmsHabit = TestStatisticsModel.confirms.map { it.date })
     }
 }

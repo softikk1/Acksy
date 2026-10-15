@@ -1,10 +1,9 @@
 package dev.softikk.acksy.ui.components
 
+import android.content.Intent
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.patrykandpatrick.vico.compose.cartesian.CartesianChartHost
@@ -13,17 +12,15 @@ import com.patrykandpatrick.vico.compose.cartesian.axis.VerticalAxis
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianLayerRangeProvider
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianValueFormatter
-import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
 import com.patrykandpatrick.vico.compose.cartesian.layer.LineCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLine
 import com.patrykandpatrick.vico.compose.cartesian.layer.rememberLineCartesianLayer
 import com.patrykandpatrick.vico.compose.cartesian.rememberCartesianChart
 import com.patrykandpatrick.vico.compose.common.Fill
+import com.patrykandpatrick.vico.compose.common.Insets
 import com.patrykandpatrick.vico.compose.common.component.LineComponent
 import com.patrykandpatrick.vico.compose.common.component.ShapeComponent
 import com.patrykandpatrick.vico.compose.common.component.TextComponent
-import dev.softikk.acksy.domain.models.StatisticsModel
-import kotlinx.datetime.LocalDateTime
 
 @Composable
 fun AcksyChart(
@@ -31,7 +28,8 @@ fun AcksyChart(
     modelProducer: CartesianChartModelProducer
 ) {
     CartesianChartHost(
-        rememberCartesianChart(
+        modifier = modifier,
+        chart = rememberCartesianChart(
             rememberLineCartesianLayer(
                 lineProvider = LineCartesianLayer.LineProvider.series(
                     LineCartesianLayer.rememberLine(
@@ -63,7 +61,8 @@ fun AcksyChart(
                 label = TextComponent(
                     textStyle = MaterialTheme.typography.labelMedium.copy(
                         color = MaterialTheme.colorScheme.onSurface
-                    )
+                    ),
+                    padding = Insets(end = 8.dp)
                 ),
                 valueFormatter = CartesianValueFormatter { _, value, _ ->
                     "${value.toInt()}%"
@@ -85,6 +84,6 @@ fun AcksyChart(
                 tick = LineComponent(fill = Fill(MaterialTheme.colorScheme.onSurface))
             ),
         ),
-        modelProducer
+        modelProducer = modelProducer
     )
 }
