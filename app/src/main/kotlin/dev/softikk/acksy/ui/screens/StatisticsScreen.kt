@@ -12,10 +12,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
-import androidx.navigation3.runtime.rememberNavBackStack
 import com.patrykandpatrick.vico.compose.cartesian.data.CartesianChartModelProducer
 import com.patrykandpatrick.vico.compose.cartesian.data.lineModel
 import dev.softikk.acksy.R
@@ -27,7 +25,6 @@ import dev.softikk.acksy.ui.components.AcksyScreenName
 import dev.softikk.acksy.ui.components.AcksyStatisticsFolder
 import dev.softikk.acksy.ui.components.Statistics
 import dev.softikk.acksy.ui.navigation.Routes
-import dev.softikk.acksy.ui.theme.AcksyTheme
 import dev.softikk.acksy.ui.theme.Dimens
 import kotlinx.datetime.LocalDateTime
 

@@ -69,4 +69,13 @@
 
     <string name="statistics_screen_subtitle_chart">Диаграмма</string>
     <string name="statistics_screen_subtitle_heatmap">Тепловая карта</string>
+
+    <!-- Settings screen -->
+    <string name="settings_screen_name">Настройки</string>
+    <string name="settings_screen_subtitle_language">Язык</string>
+    <string name="settings_screen_subtitle_theme">Тема</string>
+    <string name="settings_screen_subtitle_accent_color">Тематический цвет</string>
+    <string name="settings_screen_theme_system_item">Системная</string>
+    <string name="settings_screen_theme_light_item">Светлая</string>
+    <string name="settings_screen_theme_dark_item">Темная</string>
 </resources>

@@ -31,11 +31,11 @@ private val HeightButtonsGroup = 46.dp
 
 @Composable
 fun AcksyAnimButtonsGroup(
-    state: Int, buttons: List<String>, onState: (Int) -> Unit
+    modifier: Modifier = Modifier, state: Int, buttons: List<String>, onState: (Int) -> Unit
 ) {
     val buttonsCount = buttons.size
     Row(
-        modifier = Modifier
+        modifier = modifier
             .height(HeightAnimButtonsGroup)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,

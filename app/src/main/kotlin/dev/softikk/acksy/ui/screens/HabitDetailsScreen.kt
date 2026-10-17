@@ -28,6 +28,7 @@ import dev.softikk.acksy.ui.components.AcksyStatisticsFolder
 import dev.softikk.acksy.ui.components.AcksySubtitle
 import dev.softikk.acksy.ui.components.AcksyTitle
 import dev.softikk.acksy.ui.components.Statistics
+import dev.softikk.acksy.ui.navigation.Routes
 import dev.softikk.acksy.ui.theme.Dimens
 import kotlinx.datetime.LocalDateTime
 import kotlinx.datetime.isoDayNumber
@@ -77,32 +78,32 @@ fun HabitDetailsScreen(habitModel: HabitModel, backStack: NavBackStack<NavKey>) 
             )
             AcksySubtitle(
                 text = when (val schedule = habitModel.schedule) {
-                    is HabitScheduleModel.Daily -> {
-                        when (schedule.dailyType) {
-                            DailyType.Everyday -> {
-                                stringResource(R.string.habit_details_screen_schedule_every_day)
-                            }
+                is HabitScheduleModel.Daily -> {
+                    when (schedule.dailyType) {
+                        DailyType.Everyday -> {
+                            stringResource(R.string.habit_details_screen_schedule_every_day)
+                        }
 
-                            DailyType.Weekdays -> {
-                                stringResource(R.string.habit_details_screen_schedule_weekdays)
-                            }
+                        DailyType.Weekdays -> {
+                            stringResource(R.string.habit_details_screen_schedule_weekdays)
+                        }
 
-                            DailyType.Weekends -> {
-                                stringResource(R.string.habit_details_screen_schedule_weekends)
-                            }
+                        DailyType.Weekends -> {
+                            stringResource(R.string.habit_details_screen_schedule_weekends)
                         }
                     }
-
-                    is HabitScheduleModel.Monthly -> {
-                        stringResource(R.string.habit_details_screen_schedule_monthly) + " " + schedule.dates.sortedBy { it }
-                            .joinToString(", ")
-                    }
-
-                    is HabitScheduleModel.Weekly -> {
-                        stringResource(R.string.habit_details_screen_schedule_weekly) + " " + schedule.weekdays.map { it.isoDayNumber }
-                            .sortedBy { it }.joinToString(", ")
-                    }
                 }
+
+                is HabitScheduleModel.Monthly -> {
+                    stringResource(R.string.habit_details_screen_schedule_monthly) + " " + schedule.dates.sortedBy { it }
+                        .joinToString(", ")
+                }
+
+                is HabitScheduleModel.Weekly -> {
+                    stringResource(R.string.habit_details_screen_schedule_weekly) + " " + schedule.weekdays.map { it.isoDayNumber }
+                        .sortedBy { it }.joinToString(", ")
+                }
+            }
             )
 
             AcksyStatisticsFolder(
@@ -128,16 +129,17 @@ fun HabitDetailsScreen(habitModel: HabitModel, backStack: NavBackStack<NavKey>) 
                 text = stringResource(R.string.habit_details_screen_title)
             )
             AcksyHeatMapCalendar(
-                backStack = backStack, confirmsHabit = TestListConfirmsHabit.map { it.date })
+                isStatistic = backStack.lastOrNull() == Routes.Statistics,
+                confirmsHabit = TestListConfirmsHabit.map { it.date })
             Row(
                 modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.End
             ) {
                 Text(
                     modifier = Modifier.clickable(
-                        indication = null,
-                        interactionSource = remember { MutableInteractionSource() }) {
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() }) {
 
-                    },
+                },
                     text = stringResource(R.string.habit_details_screen_button_delete_habit),
                     style = MaterialTheme.typography.bodyMedium,
                     color = MaterialTheme.colorScheme.error

@@ -70,4 +70,13 @@
 
     <string name="statistics_screen_subtitle_chart">Chart</string>
     <string name="statistics_screen_subtitle_heatmap">Heatmap</string>
+
+    <!-- Settings screen -->
+    <string name="settings_screen_name">Settings</string>
+    <string name="settings_screen_subtitle_language">Language</string>
+    <string name="settings_screen_subtitle_theme">Theme</string>
+    <string name="settings_screen_subtitle_accent_color">Accent color</string>
+    <string name="settings_screen_theme_system_item">System</string>
+    <string name="settings_screen_theme_light_item">Light</string>
+    <string name="settings_screen_theme_dark_item">Dark</string>
 </resources>
