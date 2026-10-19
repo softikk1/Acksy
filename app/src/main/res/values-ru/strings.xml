@@ -78,4 +78,9 @@
     <string name="settings_screen_theme_system_item">Системная</string>
     <string name="settings_screen_theme_light_item">Светлая</string>
     <string name="settings_screen_theme_dark_item">Темная</string>
+
+    <!-- Select language screen -->
+    <string name="select_language_screen_name">Язык</string>"
+    <string name="select_language_screen_russian">Русский</string>
+    <string name="select_language_screen_english">Английский</string>
 </resources>

@@ -79,4 +79,9 @@
     <string name="settings_screen_theme_system_item">System</string>
     <string name="settings_screen_theme_light_item">Light</string>
     <string name="settings_screen_theme_dark_item">Dark</string>
+
+    <!-- Select language screen -->
+    <string name="select_language_screen_name">Language</string>"
+    <string name="select_language_screen_russian">Russian</string>
+    <string name="select_language_screen_english">English</string>
 </resources>

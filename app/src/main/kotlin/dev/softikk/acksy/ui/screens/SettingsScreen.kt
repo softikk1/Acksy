@@ -63,8 +63,7 @@ fun SettingScreen() {
                     .height(HeightLanguageSelectorComponent)
                     .clickable(
                         indication = null,
-                        interactionSource = remember { MutableInteractionSource() }
-                    ) {
+                        interactionSource = remember { MutableInteractionSource() }) {
 
                     }, verticalArrangement = Arrangement.SpaceBetween
             ) {
@@ -143,8 +142,7 @@ fun SettingScreen() {
             AcksyListColors(
                 modifier = Modifier
                     .fillMaxWidth()
-                    .padding(horizontal = Dimens.Paddings.mediumPadding),
-                state = listColorsState
+                    .padding(horizontal = Dimens.Paddings.mediumPadding), state = listColorsState
             ) {
                 listColorsState = it
             }
