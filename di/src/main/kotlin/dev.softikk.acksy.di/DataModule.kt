@@ -1,9 +1,5 @@
 package dev.softikk.acksy.di
 
-import androidx.datastore.core.DataStore
-import androidx.datastore.core.DataStoreFactory
-import androidx.datastore.preferences.core.Preferences
-import androidx.datastore.preferences.core.PreferencesSerializer
 import dev.softikk.acksy.data.sources.AuthRemoteSource
 import dev.softikk.acksy.data.sources.HabitsRemoteSource
 import dev.softikk.acksy.data.sources.SettingsRemoteSource
@@ -20,13 +16,20 @@ import io.ktor.client.engine.cio.CIO
 import io.ktor.client.plugins.auth.Auth
 import io.ktor.client.plugins.auth.providers.BearerTokens
 import io.ktor.client.plugins.auth.providers.bearer
-import io.ktor.client.plugins.cache.storage.FileStorage
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val dataModule = module {
-    single<HttpClient> {
+    single<HttpClient>(named("first")) {
+        HttpClient(CIO) {
+            install(ContentNegotiation) {
+                json()
+            }
+        }
+    }
+    single<HttpClient>(named("second")) {
         HttpClient(CIO) {
             install(ContentNegotiation) {
                 json()
@@ -60,7 +63,7 @@ val dataModule = module {
     }
 
     single<AuthRemoteSource> {
-        AuthRemoteSourceImpl(get())
+        AuthRemoteSourceImpl(get(named("first")))
     }
     single<HabitsRemoteSource> {
         HabitsRemoteSourceImpl(get())

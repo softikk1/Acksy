@@ -1,6 +1,8 @@
 package dev.softikk.acksy.ui.navigation
 
 import androidx.navigation3.runtime.NavKey
+import dev.softikk.acksy.ui.models.HabitAppModel
+import dev.softikk.acksy.ui.models.HabitDetailsAppModel
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -21,10 +23,13 @@ sealed class Routes {
     object Home : Routes(), NavBar, NavKey
 
     @Serializable
-    object CreateHabit : Routes(), NavBar, NavKey
+    object CreateHabit : Routes(), NavKey
 
     @Serializable
-    object HabitDetails : Routes(), NavKey
+    data class HabitDetails(
+        val habitModel: HabitAppModel,
+        val habitDetailsAppModel: HabitDetailsAppModel
+    ) : Routes(), NavKey
 
     @Serializable
     object Statistics : Routes(), NavBar, NavKey

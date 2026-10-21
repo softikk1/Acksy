@@ -19,8 +19,6 @@ import androidx.navigation3.runtime.NavKey
 import androidx.wear.compose.material.Text
 import dev.softikk.acksy.R
 import dev.softikk.acksy.domain.enums.DailyType
-import dev.softikk.acksy.domain.models.habits.HabitModel
-import dev.softikk.acksy.domain.models.habits.HabitScheduleModel
 import dev.softikk.acksy.ui.components.AcksyBackScreenButton
 import dev.softikk.acksy.ui.components.AcksyHeatMapCalendar
 import dev.softikk.acksy.ui.components.AcksyScreenName
@@ -28,6 +26,9 @@ import dev.softikk.acksy.ui.components.AcksyStatisticsFolder
 import dev.softikk.acksy.ui.components.AcksySubtitle
 import dev.softikk.acksy.ui.components.AcksyTitle
 import dev.softikk.acksy.ui.components.Statistics
+import dev.softikk.acksy.ui.models.HabitAppModel
+import dev.softikk.acksy.ui.models.HabitDetailsAppModel
+import dev.softikk.acksy.ui.models.HabitScheduleAppModel
 import dev.softikk.acksy.ui.navigation.Routes
 import dev.softikk.acksy.ui.theme.Dimens
 import kotlinx.datetime.LocalDateTime
@@ -53,13 +54,13 @@ val TestListConfirmsHabit = listOf(
     LocalDateTime(2026, 10, 19, 17, 0),
     LocalDateTime(2026, 10, 25, 10, 0)
 )
-const val TestScore = 80
-const val TestTotal = 32
-const val TestBestStreak = 10
-const val TestStreak = 5
 
 @Composable
-fun HabitDetailsScreen(habitModel: HabitModel, backStack: NavBackStack<NavKey>) {
+fun HabitDetailsScreen(
+    habitModel: HabitAppModel,
+    habitDetailsAppModel: HabitDetailsAppModel,
+    backStack: NavBackStack<NavKey>
+) {
     Column(
         modifier = Modifier
             .fillMaxSize()
@@ -78,7 +79,7 @@ fun HabitDetailsScreen(habitModel: HabitModel, backStack: NavBackStack<NavKey>) 
             )
             AcksySubtitle(
                 text = when (val schedule = habitModel.schedule) {
-                is HabitScheduleModel.Daily -> {
+                is HabitScheduleAppModel.Daily -> {
                     when (schedule.dailyType) {
                         DailyType.Everyday -> {
                             stringResource(R.string.habit_details_screen_schedule_every_day)
@@ -94,12 +95,12 @@ fun HabitDetailsScreen(habitModel: HabitModel, backStack: NavBackStack<NavKey>) 
                     }
                 }
 
-                is HabitScheduleModel.Monthly -> {
+                is HabitScheduleAppModel.Monthly -> {
                     stringResource(R.string.habit_details_screen_schedule_monthly) + " " + schedule.dates.sortedBy { it }
                         .joinToString(", ")
                 }
 
-                is HabitScheduleModel.Weekly -> {
+                is HabitScheduleAppModel.Weekly -> {
                     stringResource(R.string.habit_details_screen_schedule_weekly) + " " + schedule.weekdays.map { it.isoDayNumber }
                         .sortedBy { it }.joinToString(", ")
                 }
@@ -109,17 +110,17 @@ fun HabitDetailsScreen(habitModel: HabitModel, backStack: NavBackStack<NavKey>) 
             AcksyStatisticsFolder(
                 modifier = Modifier.fillMaxWidth(), items = listOf(
                     Statistics(
-                        count = TestScore,
+                        count = habitDetailsAppModel.score.toInt(),
                         description = stringResource(R.string.habit_details_screen_statistic_folder_score),
                         suffix = "%"
                     ), Statistics(
-                        count = TestTotal,
+                        count = habitDetailsAppModel.total.toInt(),
                         description = stringResource(R.string.habit_details_screen_statistic_folder_total)
                     ), Statistics(
-                        count = TestBestStreak,
+                        count = habitDetailsAppModel.bestStreak.toInt(),
                         description = stringResource(R.string.habit_details_screen_statistic_folder_best_streak)
                     ), Statistics(
-                        count = TestStreak,
+                        count = habitDetailsAppModel.lastStreak.toInt(),
                         description = stringResource(R.string.habit_details_screen_statistic_folder_streak)
                     )
                 )

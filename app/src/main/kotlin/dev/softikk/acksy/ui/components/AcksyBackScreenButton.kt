@@ -10,6 +10,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
+import androidx.lifecycle.compose.dropUnlessResumed
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import dev.softikk.acksy.R
@@ -19,9 +20,13 @@ fun AcksyBackScreenButton(modifier: Modifier = Modifier, backStack: NavBackStack
     Box(
         modifier
             .clickable(
-                indication = null, interactionSource = remember { MutableInteractionSource() }) {
-                backStack.removeLastOrNull()
-            }) {
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() },
+                onClick = dropUnlessResumed {
+                    backStack.removeLastOrNull()
+                }
+            )
+    ) {
         Icon(
             imageVector = ImageVector.vectorResource(R.drawable.back),
             contentDescription = null,

@@ -2,9 +2,13 @@ package dev.softikk.acksy.ui.screens
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -52,8 +56,9 @@ val TestStatisticsModel = StatisticsModel(
 )
 
 @Composable
-fun StatisticsScreen(backStack: NavBackStack<NavKey>) {
+fun StatisticsScreen(backStack: NavBackStack<NavKey>, innerPadding: PaddingValues) {
     val modelProducer = remember { CartesianChartModelProducer() }
+    val scrollStateScreen = rememberScrollState()
     LaunchedEffect(Unit) {
         modelProducer.runTransaction {
             lineModel {
@@ -65,7 +70,8 @@ fun StatisticsScreen(backStack: NavBackStack<NavKey>) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .padding(Dimens.Paddings.mediumPadding),
+            .padding(Dimens.Paddings.mediumPadding)
+            .verticalScroll(scrollStateScreen),
         verticalArrangement = Arrangement.spacedBy(Dimens.Paddings.mediumPadding)
     ) {
         AcksyScreenName(
@@ -116,5 +122,9 @@ fun StatisticsScreen(backStack: NavBackStack<NavKey>) {
         AcksyHeatMapCalendar(
             isStatistic = backStack.lastOrNull() == Routes.Statistics,
             confirmsHabit = TestStatisticsModel.confirms.map { it.date })
+        Spacer(
+            modifier = Modifier
+                .padding(bottom = innerPadding.calculateBottomPadding())
+        )
     }
 }

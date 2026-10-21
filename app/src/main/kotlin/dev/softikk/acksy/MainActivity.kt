@@ -4,7 +4,6 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import dev.softikk.acksy.ui.components.AcksyChart
 import dev.softikk.acksy.ui.navigation.NavController
 import dev.softikk.acksy.ui.theme.AcksyTheme
 

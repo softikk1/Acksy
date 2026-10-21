@@ -27,23 +27,29 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.dropUnlessResumed
+import androidx.navigation3.runtime.NavBackStack
+import androidx.navigation3.runtime.NavKey
 import dev.softikk.acksy.R
 import dev.softikk.acksy.ui.components.AcksyAnimButtonsGroup
 import dev.softikk.acksy.ui.components.AcksyListColors
 import dev.softikk.acksy.ui.components.AcksyScreenName
 import dev.softikk.acksy.ui.components.AcksySubtitle
+import dev.softikk.acksy.ui.navigation.Routes
 import dev.softikk.acksy.ui.theme.Dimens
 import dev.softikk.acksy.ui.theme.PastelBlue
 
 private val HeightLanguageSelectorComponent = 48.dp
 
 @Composable
-fun SettingScreen() {
+fun SettingScreen(backStack: NavBackStack<NavKey>) {
     var themeState by remember { mutableIntStateOf(0) }
     var listColorsState by remember { mutableStateOf(PastelBlue) }
 
     Column(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(top = Dimens.Paddings.mediumPadding),
         verticalArrangement = Arrangement.spacedBy(Dimens.Paddings.mediumPadding)
     ) {
         AcksyScreenName(
@@ -63,15 +69,17 @@ fun SettingScreen() {
                     .height(HeightLanguageSelectorComponent)
                     .clickable(
                         indication = null,
-                        interactionSource = remember { MutableInteractionSource() }) {
-
-                    }, verticalArrangement = Arrangement.SpaceBetween
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = dropUnlessResumed {
+                            backStack.add(Routes.SelectLanguage)
+                        }
+                    ), verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Spacer(
                     modifier = Modifier
                         .height(1.dp)
                         .fillMaxWidth()
-                        .background(MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f))
+                        .background(MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.1f))
                 )
                 Row(
                     modifier = Modifier
@@ -100,14 +108,14 @@ fun SettingScreen() {
                         modifier = Modifier.size(24.dp),
                         imageVector = ImageVector.vectorResource(R.drawable.right_arrow),
                         contentDescription = null,
-                        tint = MaterialTheme.colorScheme.onSurface
+                        tint = MaterialTheme.colorScheme.primary
                     )
                 }
                 Spacer(
                     modifier = Modifier
                         .height(1.dp)
                         .fillMaxWidth()
-                        .background(MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.2f))
+                        .background(MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.1f))
                 )
             }
         }

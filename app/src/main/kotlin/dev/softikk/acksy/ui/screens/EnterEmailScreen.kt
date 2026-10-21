@@ -18,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
+import androidx.lifecycle.compose.dropUnlessResumed
 import dev.softikk.acksy.R
 import dev.softikk.acksy.ui.components.AcksyBackScreenButton
 import dev.softikk.acksy.ui.components.AcksySubtitle
@@ -72,7 +73,7 @@ fun EnterEmailScreen(backStack: NavBackStack<NavKey>) {
                     text = stringResource(R.string.auth_button_text),
                     containerColor = MaterialTheme.colorScheme.primary,
                     contentColor = MaterialTheme.colorScheme.surface,
-                    onClick = {
+                    onClick = dropUnlessResumed {
                         backStack.add(Routes.EnterVerifCode)
                     })
             }

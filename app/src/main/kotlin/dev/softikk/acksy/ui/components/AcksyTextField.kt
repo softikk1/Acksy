@@ -77,9 +77,11 @@ fun AcksyTextField(
             },
             trailingIcon = {
                 Box(
-                    modifier = Modifier.clickable {
-                        state.edit { replace(0, state.text.length, "") }
-                    }) {
+                    modifier = Modifier.clickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() }) {
+                    state.edit { replace(0, state.text.length, "") }
+                }) {
                     Icon(
                         modifier = Modifier.size(BackspaceButtonTextFieldSize),
                         imageVector = ImageVector.vectorResource(R.drawable.x),

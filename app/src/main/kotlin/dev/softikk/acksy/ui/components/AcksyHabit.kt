@@ -1,6 +1,7 @@
 package dev.softikk.acksy.ui.components
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.Orientation
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -44,7 +45,7 @@ private val HeightTask = 50.dp
 
 @OptIn(ExperimentalWearMaterialApi::class)
 @Composable
-fun AcksyHabit(taskName: String, left: () -> Unit, right: () -> Unit) {
+fun AcksyHabit(taskName: String, left: () -> Unit, right: () -> Unit, onClick: () -> Unit = {}) {
     val colorTask =
         if (isSystemInDarkTheme()) MaterialTheme.colorScheme.surfaceContainer else DarkWhite
     val swipeableState = rememberSwipeableState(0, confirmStateChange = { value ->
@@ -71,13 +72,15 @@ fun AcksyHabit(taskName: String, left: () -> Unit, right: () -> Unit) {
                 thresholds = { _, _ -> FractionalThreshold(0.7f) },
                 orientation = Orientation.Horizontal
             )
+            .clickable(onClick = onClick)
     ) {
         Row(
             modifier = Modifier
                 .fillMaxSize()
                 .dropShadow(
-                    shape = RoundedCornerShape(Dimens.Shapes.mediumShape),
-                    shadow = Shadow(radius = 4.dp, offset = DpOffset(x = 0.dp, y = 1.dp), alpha = 0.1f)
+                    shape = RoundedCornerShape(Dimens.Shapes.mediumShape), shadow = Shadow(
+                        radius = 4.dp, offset = DpOffset(x = 0.dp, y = 1.dp), alpha = 0.1f
+                    )
                 )
         ) {
             Box(

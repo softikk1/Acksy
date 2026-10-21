@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.MaterialTheme
@@ -16,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.dropUnlessResumed
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import dev.softikk.acksy.R
@@ -101,12 +103,12 @@ fun CreateHabitScreen(backStack: NavBackStack<NavKey>) {
                 2 -> {
                     AcksySubtitle(
                         text = stringResource(R.string.create_habit_screen_title_monthly) + " " + selectedDays.sortedBy {
-                            it.day
-                        }.map {
-                            it.day
-                        }.joinToString(
-                            ", "
-                        )
+                        it.day
+                    }.map {
+                        it.day
+                    }.joinToString(
+                        ", "
+                    )
                     )
                     AcksyCalendar(selectedDates = selectedDays, onSelect = {
                         selectedDays.add(it)
@@ -118,11 +120,15 @@ fun CreateHabitScreen(backStack: NavBackStack<NavKey>) {
         }
 
         AcksyTextButton(
-            modifier = Modifier.fillMaxWidth(),
+            modifier = Modifier
+                .fillMaxWidth()
+                .navigationBarsPadding()
+                .padding(bottom = Dimens.Paddings.mediumPadding),
             text = stringResource(R.string.create_habit_screen_text_button_save),
-            containerColor = MaterialTheme.colorScheme.onSurface
-        ) {
-
-        }
+            containerColor = MaterialTheme.colorScheme.onSurface,
+            onClick = dropUnlessResumed {
+                backStack.removeLastOrNull()
+            }
+        )
     }
 }

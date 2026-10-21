@@ -1,17 +1,17 @@
 package dev.softikk.acksy.ui.utils
 
 import dev.softikk.acksy.domain.enums.DailyType
-import dev.softikk.acksy.domain.models.habits.HabitModel
-import dev.softikk.acksy.domain.models.habits.HabitScheduleModel
+import dev.softikk.acksy.ui.models.HabitAppModel
+import dev.softikk.acksy.ui.models.HabitScheduleAppModel
 import kotlinx.datetime.DayOfWeek
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
 import kotlin.time.Clock
 
-fun isTodayHabit(habitModel: HabitModel): Boolean {
+fun isTodayHabit(habitModel: HabitAppModel): Boolean {
     val dateTimeNow = Clock.System.now().toLocalDateTime(TimeZone.currentSystemDefault())
     return when (val schedule = habitModel.schedule) {
-        is HabitScheduleModel.Daily -> {
+        is HabitScheduleAppModel.Daily -> {
             when (schedule.dailyType) {
                 DailyType.Everyday -> true
 
@@ -33,11 +33,11 @@ fun isTodayHabit(habitModel: HabitModel): Boolean {
             }
         }
 
-        is HabitScheduleModel.Monthly -> {
+        is HabitScheduleAppModel.Monthly -> {
             dateTimeNow.day.toUInt() in schedule.dates
         }
 
-        is HabitScheduleModel.Weekly -> {
+        is HabitScheduleAppModel.Weekly -> {
             dateTimeNow.dayOfWeek in schedule.weekdays
         }
     }

@@ -6,14 +6,18 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
+import androidx.lifecycle.compose.dropUnlessResumed
 import dev.softikk.acksy.R
 import dev.softikk.acksy.ui.components.AcksyBackScreenButton
 import dev.softikk.acksy.ui.components.AcksyCodeField
@@ -26,7 +30,7 @@ import dev.softikk.acksy.ui.theme.Dimens
 
 @Composable
 fun EnterVerifCodeScreen(backStack: NavBackStack<NavKey>) {
-    val verificationCodeTextFieldState = rememberTextFieldState()
+    var verificationCodeTextFieldState by remember { mutableStateOf("") }
     val email = "email@gmail.com"
 
     AcksyTheme {
@@ -61,14 +65,16 @@ fun EnterVerifCodeScreen(backStack: NavBackStack<NavKey>) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     AcksyCodeField(
-                        state = verificationCodeTextFieldState
-                    )
+                        value = verificationCodeTextFieldState
+                    ) {
+                        verificationCodeTextFieldState = it
+                    }
                     AcksyTextButton(
                         modifier = Modifier.fillMaxWidth(),
                         text = stringResource(R.string.auth_button_text),
                         containerColor = MaterialTheme.colorScheme.primary,
                         contentColor = MaterialTheme.colorScheme.surface,
-                        onClick = {
+                        onClick = dropUnlessResumed {
                             backStack.add(Routes.Home)
                         })
                 }
