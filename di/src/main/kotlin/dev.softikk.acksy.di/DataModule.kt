@@ -18,10 +18,18 @@ import io.ktor.client.plugins.auth.providers.BearerTokens
 import io.ktor.client.plugins.auth.providers.bearer
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
+import org.koin.core.qualifier.named
 import org.koin.dsl.module
 
 val dataModule = module {
-    single<HttpClient> {
+    single<HttpClient>(named("first")) {
+        HttpClient(CIO) {
+            install(ContentNegotiation) {
+                json()
+            }
+        }
+    }
+    single<HttpClient>(named("second")) {
         HttpClient(CIO) {
             install(ContentNegotiation) {
                 json()
@@ -55,7 +63,7 @@ val dataModule = module {
     }
 
     single<AuthRemoteSource> {
-        AuthRemoteSourceImpl(get())
+        AuthRemoteSourceImpl(get(named("first")))
     }
     single<HabitsRemoteSource> {
         HabitsRemoteSourceImpl(get())
@@ -66,7 +74,6 @@ val dataModule = module {
     single<StatisticsRemoteSource> {
         StatisticsRemoteSourceImpl(get())
     }
-
     single<TokensLocalSource> {
         TokensLocalSourceImpl(get())
     }

@@ -12,9 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.CornerSize
 import androidx.compose.foundation.text.BasicTextField
-import androidx.compose.foundation.text.input.InputTransformation
-import androidx.compose.foundation.text.input.TextFieldState
-import androidx.compose.foundation.text.input.delete
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -25,38 +22,34 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+import androidx.core.text.isDigitsOnly
 import dev.softikk.acksy.ui.theme.Dimens
 
 private val BorderWidth = 1.25.dp
 
 @Composable
 fun AcksyCodeField(
-    modifier: Modifier = Modifier, state: TextFieldState
+    modifier: Modifier = Modifier, value: String, onValueChange: (String) -> Unit
 ) {
-    val text = state.text.toString()
     BasicTextField(
         modifier = modifier.widthIn(max = Dimens.maxWidthElement),
-        state = state,
-        inputTransformation = InputTransformation {
-            val localText = toString()
-            if (!localText.all { it.isDigit() }) {
-                delete(localText.length - 1, localText.length)
-            }
-            if (localText.length > 6) {
-                delete(6, localText.length)
+        value = value,
+        onValueChange = {
+            if ((it.length <= 6) and (it.isDigitsOnly())) {
+                onValueChange(it)
             }
         },
-        decorator = {
+        decorationBox = {
             Row(
                 horizontalArrangement = Arrangement.spacedBy(Dimens.Paddings.mediumPadding)
             ) {
                 repeat(6) { index ->
                     val visibleState = remember { MutableTransitionState(false) }
 
-                    visibleState.targetState = text.length >= index + 1
+                    visibleState.targetState = value.length >= index + 1
 
-                    val lastChar by remember(text) {
-                        mutableStateOf(if (text.length >= index + 1) text[index].toString() else "")
+                    val lastChar by remember(value) {
+                        mutableStateOf(if (value.length >= index + 1) value[index].toString() else "")
                     }
 
                     val shape = when (index) {
@@ -80,10 +73,10 @@ fun AcksyCodeField(
                                 color = MaterialTheme.colorScheme.secondary, shape = shape
                             )
                             .border(
-                                width = BorderWidth, color = if (text.isEmpty()) {
+                                width = BorderWidth, color = if (value.isEmpty()) {
                                     if (index == 0) MaterialTheme.colorScheme.primary else Color.Transparent
                                 } else {
-                                    if (index == text.length) MaterialTheme.colorScheme.primary else Color.Transparent
+                                    if (index == value.length) MaterialTheme.colorScheme.primary else Color.Transparent
                                 }, shape = shape
                             ), contentAlignment = Alignment.Center
                     ) {

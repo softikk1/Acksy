@@ -31,8 +31,8 @@ private val BackspaceButtonTextFieldSize = 48.dp
 
 @Composable
 fun AcksyTextField(
-    modifier: Modifier,
-    label: String,
+    modifier: Modifier = Modifier,
+    placeholder: String,
     isError: Boolean = false,
     state: TextFieldState = rememberTextFieldState(),
     interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
@@ -70,16 +70,18 @@ fun AcksyTextField(
             outputTransformation = null,
             interactionSource = interactionSource,
             colors = colors,
-            label = {
+            placeholder = {
                 Text(
-                    text = label, style = MaterialTheme.typography.bodyMedium
+                    text = placeholder, style = MaterialTheme.typography.bodyMedium
                 )
             },
             trailingIcon = {
                 Box(
-                    modifier = Modifier.clickable {
-                        state.edit { replace(0, state.text.length, "") }
-                    }) {
+                    modifier = Modifier.clickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() }) {
+                    state.edit { replace(0, state.text.length, "") }
+                }) {
                     Icon(
                         modifier = Modifier.size(BackspaceButtonTextFieldSize),
                         imageVector = ImageVector.vectorResource(R.drawable.x),
@@ -93,7 +95,9 @@ fun AcksyTextField(
                     isError = isError,
                     interactionSource = interactionSource,
                     colors = colors,
-                    shape = MaterialTheme.shapes.small
+                    shape = MaterialTheme.shapes.small,
+                    focusedIndicatorLineThickness = 0.dp,
+                    unfocusedIndicatorLineThickness = 0.dp
                 )
             })
     )

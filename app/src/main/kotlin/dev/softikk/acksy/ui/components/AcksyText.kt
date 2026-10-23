@@ -7,24 +7,26 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.wear.compose.material.Text
 
 @Composable
 private fun AcksyText(
     modifier: Modifier = Modifier,
-    contentAlignment: Alignment = Alignment.Center,
+    textAlign: TextAlign = TextAlign.Center,
     text: String,
     style: TextStyle,
     color: Color
 ) {
     Box(
         modifier = modifier,
-        contentAlignment = contentAlignment
+        contentAlignment = Alignment.Center
     ) {
         Text(
             text = text,
             style = style,
-            color = color
+            color = color,
+            textAlign = textAlign
         )
     }
 }
@@ -32,12 +34,12 @@ private fun AcksyText(
 @Composable
 fun AcksyScreenName(
     modifier: Modifier = Modifier,
-    contentAlignment: Alignment,
+    textAlign: TextAlign = TextAlign.Center,
     text: String
 ) {
     AcksyText(
         modifier = modifier,
-        contentAlignment = contentAlignment,
+        textAlign = textAlign,
         text = text,
         style = MaterialTheme.typography.headlineLarge,
         color = MaterialTheme.colorScheme.onSurface
@@ -47,12 +49,12 @@ fun AcksyScreenName(
 @Composable
 fun AcksyTitle(
     modifier: Modifier = Modifier,
-    contentAlignment: Alignment,
+    textAlign: TextAlign = TextAlign.Center,
     text: String
 ) {
     AcksyText(
         modifier = modifier,
-        contentAlignment = contentAlignment,
+        textAlign = textAlign,
         text = text,
         style = MaterialTheme.typography.headlineMedium,
         color = MaterialTheme.colorScheme.onSurface
@@ -62,12 +64,12 @@ fun AcksyTitle(
 @Composable
 fun AcksySubtitle(
     modifier: Modifier = Modifier,
-    contentAlignment: Alignment,
+    textAlign: TextAlign = TextAlign.Center,
     text: String
 ) {
     AcksyText(
         modifier = modifier,
-        contentAlignment = contentAlignment,
+        textAlign = textAlign,
         text = text,
         style = MaterialTheme.typography.bodyMedium,
         color = MaterialTheme.colorScheme.onSurfaceVariant

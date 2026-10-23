@@ -28,6 +28,7 @@ import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.compose.dropUnlessResumed
 import androidx.navigation3.runtime.NavBackStack
 import androidx.navigation3.runtime.NavKey
 import dev.softikk.acksy.R
@@ -65,9 +66,11 @@ fun AcksyNavBar(
                     )
                     .clickable(
                         indication = null,
-                        interactionSource = remember { MutableInteractionSource() }) {
-                        backStack.add(Routes.CreateHabit)
-                    }
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = dropUnlessResumed {
+                            backStack.add(Routes.CreateHabit)
+                        }
+                    )
                     .background(color = actionButtonColor, shape = shape),
                 contentAlignment = Alignment.Center) {
                 Icon(
@@ -116,9 +119,12 @@ fun RowScope.ItemNavBar(icon: ImageVector, isActive: Boolean, onClick: () -> Uni
             .height(Dimens.heightComponent)
             .weight(1f)
             .clickable(
-                indication = null, interactionSource = remember { MutableInteractionSource() }) {
-                onClick()
-            }, contentAlignment = Alignment.Center
+                indication = null,
+                interactionSource = remember { MutableInteractionSource() },
+                onClick = dropUnlessResumed {
+                    onClick()
+                }
+            ), contentAlignment = Alignment.Center
     ) {
         Icon(
             imageVector = icon,

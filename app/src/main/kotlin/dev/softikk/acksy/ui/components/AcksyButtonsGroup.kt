@@ -31,11 +31,11 @@ private val HeightButtonsGroup = 46.dp
 
 @Composable
 fun AcksyAnimButtonsGroup(
-    state: Int, buttons: List<String>, onState: (Int) -> Unit
+    modifier: Modifier = Modifier, state: Int, buttons: List<String>, onState: (Int) -> Unit
 ) {
     val buttonsCount = buttons.size
     Row(
-        modifier = Modifier
+        modifier = modifier
             .height(HeightAnimButtonsGroup)
             .fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically,
@@ -111,7 +111,8 @@ fun AcksyButtonsGroup(
                         onState(index)
                     }
                     .background(
-                        color = if (index == state) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary
+                        color = if (index == state) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.secondary,
+                        shape = RoundedCornerShape(Dimens.Shapes.mediumShape)
                     ), contentAlignment = Alignment.Center) {
                 Text(
                     text = buttons[index],
